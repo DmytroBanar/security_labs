@@ -36,4 +36,18 @@ public class FootballPlayersRestController {
         footballPlayersService.delById(id);
     }
 
+    @GetMapping("/age/{minAge}/{maxAge}")
+    public List<FootballPlayers> getByAgeRange(@PathVariable int minAge, @PathVariable int maxAge) {
+        return footballPlayersService.getByAgeRange(minAge, maxAge);
+    }
+
+    @GetMapping("/team/{team}")
+    public List<FootballPlayers> getByTeam(@PathVariable String team) {
+        return footballPlayersService.getByTeam(team);
+    }
+
+    @GetMapping("/country/{country}")
+    public List<FootballPlayers> getByCountry(@PathVariable String country) {
+        return footballPlayersService.getByCountry(country);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -46,6 +47,27 @@ public class FootballPlayersService {
     public void delById(String id) {
         FootballPlayersRepository.deleteById(id);
     }
+
+    public List<FootballPlayers> getByTeam(String team) {
+        return FootballPlayersRepository.findAll().stream()
+                .filter(player -> player.getTeam().equalsIgnoreCase(team))
+                .collect(Collectors.toList());
+    }
+
+    public List<FootballPlayers> getByCountry(String country) {
+        return FootballPlayersRepository.findAll().stream()
+                .filter(player -> player.getCountry().equalsIgnoreCase(country))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<FootballPlayers> getByAgeRange(int minAge, int maxAge) {
+        return FootballPlayersRepository.findAll().stream()
+                .filter(player -> player.getAge() >= minAge && player.getAge() <= maxAge)
+                .collect(Collectors.toList());
+    }
+
+
 
 
 }
