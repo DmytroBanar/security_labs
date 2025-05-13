@@ -12,7 +12,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @ToString
-public class FootballPlayers {
+@Document
+public class FootballPlayers extends AuditMetaData {
     private String id;
     private String name;
     private String surname;
